@@ -10,17 +10,29 @@ protected:
     string contact;
 
 public:
-    Person(string n, string cnic, int a, string con) {
+    Person(string n, string c, int a, string con)
+    {
         name = n;
-        CNIC = cnic;
+        CNIC = c;
         age = a;
         contact = con;
     }
 
     virtual void displayInfo() = 0;
 
-    virtual void getdata() {
-        cin >> name >> CNIC >> age >> contact;
+    virtual void getdata()
+    {
+        cout << "Enter Name: ";
+        cin >> name;
+
+        cout << "Enter CNIC: ";
+        cin >> CNIC;
+
+        cout << "Enter Age: ";
+        cin >> age;
+
+        cout << "Enter Contact Number: ";
+        cin >> contact;
     }
 
     virtual ~Person() {}
@@ -34,39 +46,37 @@ private:
     string enrolledCourses[3];
 
 public:
-    Student() : Person("", "", 0, "") {
+    Student() : Person("", "", 0, "")
+    {
         rollNo = "";
         semester = 0;
         GPA = 0.0;
-
-        for (int i = 0; i < 3; i++) {
-            enrolledCourses[i] = "";
-        }
     }
 
-    Student(string n, string cnic, int a, string con,
-            string r, int sem, float gpa, string courses[])
-        : Person(n, cnic, a, con) {
-
-        rollNo = r;
-        semester = sem;
-        GPA = gpa;
-
-        for (int i = 0; i < 3; i++)
-            enrolledCourses[i] = courses[i];
-    }
-
-    void getdata() override {
+    void getdata() override
+    {
         Person::getdata();
 
-        cin >> rollNo >> semester >> GPA;
+        cout << "Enter Roll Number: ";
+        cin >> rollNo;
 
-        for (int i = 0; i < 3; i++) {
+        cout << "Enter Semester: ";
+        cin >> semester;
+
+        cout << "Enter GPA: ";
+        cin >> GPA;
+
+        cout << "Enter 3 Enrolled Courses:\n";
+
+        for (int i = 0; i < 3; i++)
+        {
+            cout << "Course " << i + 1 << ": ";
             cin >> enrolledCourses[i];
         }
     }
 
-    char calculateGrade() {
+    char calculateGrade()
+    {
         if (GPA >= 3.7)
             return 'A';
         else if (GPA >= 3.0)
@@ -77,18 +87,21 @@ public:
             return 'F';
     }
 
-    void displayInfo() override {
-        cout << "\n----- Student Information -----" << endl;
+    void displayInfo() override
+    {
+        cout << "\n===== STUDENT INFORMATION =====\n";
+
         cout << "Name: " << name << endl;
         cout << "CNIC: " << CNIC << endl;
         cout << "Age: " << age << endl;
         cout << "Contact: " << contact << endl;
-        cout << "Roll No: " << rollNo << endl;
+        cout << "Roll Number: " << rollNo << endl;
         cout << "Semester: " << semester << endl;
         cout << "GPA: " << GPA << endl;
 
-        cout << "Enrolled Courses: ";
-        for (int i = 0; i < 3; i++) {
+        cout << "Courses: ";
+        for (int i = 0; i < 3; i++)
+        {
             cout << enrolledCourses[i] << " ";
         }
 
@@ -104,41 +117,39 @@ private:
     string assignedCourses[3];
 
 public:
-    Faculty() : Person("", "", 0, "") {
+    Faculty() : Person("", "", 0, "")
+    {
         employeeID = "";
         department = "";
         designation = "";
-
-        for (int i = 0; i < 3; i++) {
-            assignedCourses[i] = "";
-        }
     }
 
-    Faculty(string n, string cnic, int a, string con,
-            string empID, string dept,
-            string desig, string courses[])
-        : Person(n, cnic, a, con) {
-
-        employeeID = empID;
-        department = dept;
-        designation = desig;
-
-        for (int i = 0; i < 3; i++)
-            assignedCourses[i] = courses[i];
-    }
-
-    void getdata() override {
+    void getdata() override
+    {
         Person::getdata();
 
-        cin >> employeeID >> department >> designation;
+        cout << "Enter Employee ID: ";
+        cin >> employeeID;
 
-        for (int i = 0; i < 3; i++) {
+        cout << "Enter Department: ";
+        cin >> department;
+
+        cout << "Enter Designation: ";
+        cin >> designation;
+
+        cout << "Enter 3 Assigned Courses:\n";
+
+        for (int i = 0; i < 3; i++)
+        {
+            cout << "Course " << i + 1 << ": ";
             cin >> assignedCourses[i];
         }
     }
 
-    void displayInfo() override {
-        cout << "\n----- Faculty Information -----" << endl;
+    void displayInfo() override
+    {
+        cout << "\n===== FACULTY INFORMATION =====\n";
+
         cout << "Name: " << name << endl;
         cout << "CNIC: " << CNIC << endl;
         cout << "Age: " << age << endl;
@@ -148,9 +159,12 @@ public:
         cout << "Designation: " << designation << endl;
 
         cout << "Assigned Courses: ";
-        for (int i = 0; i < 3; i++) {
+
+        for (int i = 0; i < 3; i++)
+        {
             cout << assignedCourses[i] << " ";
         }
+
         cout << endl;
     }
 };
@@ -162,28 +176,35 @@ private:
     double salary;
 
 public:
-    Staff() : Person("", "", 0, "") {
+    Staff() : Person("", "", 0, "")
+    {
         staffID = "";
         role = "";
         salary = 0;
     }
 
-    Staff(string n, string cnic, int a, string con,
-          string id, string r, double s)
-        : Person(n, cnic, a, con) {
-
-        staffID = id;
-        role = r;
-        salary = s;
-    }
-
-    void getdata() override {
+    void getdata() override
+    {
         Person::getdata();
-        cin >> staffID >> role >> salary;
-    }
 
-    void displayInfo() override {
-        cout << "\n----- Staff Information -----" << endl;
+        cout << "Enter Staff ID: ";
+        cin >> staffID;
+
+        cout << "Enter Role: ";
+        cin >> role;
+
+        cout << "Enter Salary: ";
+        cin >> salary;
+    }
+   double salarybonus()
+{
+    return salary + 1000;
+}
+
+    void displayInfo() override
+    {
+        cout << "\n===== STAFF INFORMATION =====\n";
+
         cout << "Name: " << name << endl;
         cout << "CNIC: " << CNIC << endl;
         cout << "Age: " << age << endl;
@@ -191,23 +212,36 @@ public:
         cout << "Staff ID: " << staffID << endl;
         cout << "Role: " << role << endl;
         cout << "Salary: " << salary << endl;
+        cout << "Salary with Bonus: " << salarybonus() << endl;
     }
 };
 
-int main() {
-    Person *p;
+int main()
+{
+    Person* p = NULL;
     int choice;
 
-    do {
-        cout << "\n1. Student";
-        cout << "\n2. Faculty";
-        cout << "\n3. Staff";
-        cout << "\n4. Exit";
-        cout << "\nEnter choice: ";
+    do
+    {
+        cout << "\n========== MENU ==========\n";
+        cout << "1. Student\n";
+        cout << "2. Faculty\n";
+        cout << "3. Staff\n";
+        cout << "4. Exit\n";
+        cout << "Enter Choice: ";
+
         cin >> choice;
 
-        switch (choice) {
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Invalid Input!\n";
+            continue;
+        }
 
+        switch (choice)
+        {
         case 1:
             p = new Student();
             p->getdata();
@@ -230,11 +264,11 @@ int main() {
             break;
 
         case 4:
-            cout << "Program Ended" << endl;
+            cout << "\nProgram Ended Successfully.\n";
             break;
 
         default:
-            cout << "Invalid Choice" << endl;
+            cout << "\nInvalid Choice.\n";
         }
 
     } while (choice != 4);
