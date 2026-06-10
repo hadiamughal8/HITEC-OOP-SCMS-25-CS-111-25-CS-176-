@@ -5,11 +5,11 @@ using namespace std;
 class CapacityExceededException
 {
 public:
-    const char* what() const
+    class error1
     {
-        return "Course capacity exceeded!";
-    }
+    };
 };
+
 class Course
 {
 private:
@@ -38,7 +38,6 @@ public:
         enrolledCount = 0;
     }
 
-    
     string getCourseCode() const
     {
         return courseCode;
@@ -64,7 +63,6 @@ public:
         return enrolledCount;
     }
 
-    
     void setCourseName(string name)
     {
         courseName = name;
@@ -74,20 +72,18 @@ public:
     {
         if(enrolledCount >= maxCapacity)
         {
-            throw CapacityExceededException();
+            throw CapacityExceededException::error1();
         }
 
         enrolledCount++;
     }
 
-    
-    bool operator==(const Course& other)
+    bool operator==(Course c)
     {
-        return courseCode == other.courseCode;
+        return courseCode == c.courseCode;
     }
 
-
-    friend ostream& operator<<(ostream& out, const Course& c)
+    friend ostream& operator<<(ostream& out, Course c)
     {
         out << "Course Code: " << c.courseCode << endl;
         out << "Course Name: " << c.courseName << endl;
@@ -99,6 +95,7 @@ public:
         return out;
     }
 };
+
 class Enrollment
 {
 private:
@@ -137,6 +134,7 @@ public:
              << grade << endl;
     }
 };
+
 class WaitingList
 {
 private:
@@ -151,29 +149,38 @@ public:
 
     void addStudent(string name)
     {
-        students[count++] = name;
+        if(count < 20)
+        {
+            students[count++] = name;
+        }
     }
 
-    WaitingList operator+(const WaitingList& other)
+    WaitingList operator+(WaitingList w)
     {
         WaitingList temp;
 
-        for(int i=0;i<count;i++)
+        for(int i = 0; i < count; i++)
+        {
             temp.students[temp.count++] = students[i];
+        }
 
-        for(int i=0;i<other.count;i++)
-            temp.students[temp.count++] =
-                other.students[i];
+        for(int i = 0; i < w.count; i++)
+        {
+            temp.students[temp.count++] = w.students[i];
+        }
 
         return temp;
     }
 
     void display()
     {
-        for(int i=0;i<count;i++)
+        for(int i = 0; i < count; i++)
+        {
             cout << students[i] << endl;
+        }
     }
 };
+
 int main()
 {
     Course c1("CS101",
@@ -185,12 +192,11 @@ int main()
     {
         c1.enrollStudent();
         c1.enrollStudent();
-
-        c1.enrollStudent(); 
+        c1.enrollStudent();
     }
-    catch(CapacityExceededException e)
+    catch(CapacityExceededException::error1)
     {
-        cout << e.what() << endl;
+        cout << "Capacity Exceeded" << endl;
     }
 
     cout << c1 << endl;
@@ -202,7 +208,7 @@ int main()
 
     if(c1 == c2)
     {
-        cout << "Same Course Code\n";
+        cout << "Same Course Code" << endl;
     }
 
     return 0;
