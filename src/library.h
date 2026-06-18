@@ -38,23 +38,25 @@ public:
 
     virtual void checkout() = 0;
     virtual void getdata()
-    {
-        cout<<"enter itemid :"<<endl;
+    {    cout<<"enter item id: ";
     	cin>>itemID;
-        cout<<"enter title :"<<endl;
-       cin >>title;
-       cout<<"enter author :"<<endl;
-       cin>>author;
-       cout<<"enter publicationyear :"<<endl;
-       cin>>publicationYear;
+		cout<<"enter title: ";
+		cin>>title;
+		cout<<"enter author: ";
+		cin>>author;
+		cout<<"enter publication year: ";
+		cin>>publicationYear;
 	}
     virtual void display()
     {
-        cout << "Item ID: " << itemID;
-        cout << "Title: " << title;
-        cout << "Author: " << author;
-        cout << "Publication Year: " << publicationYear;
+        cout << "\nItem ID: " << itemID;
+        cout << "\nTitle: " << title;
+        cout << "\nAuthor: " << author;
+        cout << "\nPublication Year: " << publicationYear;
 }
+
+    virtual void save(ofstream &out) = 0;
+
     virtual ~LibraryItem(){}
 };
 
@@ -76,7 +78,12 @@ public:
     void getdata()
     {
     	LibraryItem::getdata();
-    	cin>>ISBN>>genre>>copiesAvailable;
+    	cout<<"enter ISBN: ";
+    	cin>>ISBN;
+		cout<<"enter genre: ";
+		cin>>genre;
+		cout<<"enter available copies: ";
+		cin>>copiesAvailable;
 	}
     void checkout()
     {
@@ -99,7 +106,17 @@ public:
         cout << "Copies Available: "
              << copiesAvailable << endl;
     }
-
+    void save(ofstream &out)
+    {
+        out << "Book "
+            << itemID << " "
+            << title << " "
+            << author << " "
+            << publicationYear << " "
+            << ISBN << " "
+            << genre << " "
+            << copiesAvailable << endl;
+    }
 };
 class Journal : public LibraryItem
 {
@@ -118,7 +135,12 @@ public:
     void getdata()
     {
     	LibraryItem::getdata();
-    	cin>>ISSN>>volume>>issueNumber;
+    	cout<<"enter ISSN: ";
+    	cin>>ISSN;
+		cout<<"enter volume: ";
+		cin>>volume;
+		cout<<"enter issue number: ";
+		cin>>issueNumber;
 	}
     void checkout()
     {
@@ -133,7 +155,17 @@ public:
         cout << "Issue Number: "
              << issueNumber << endl;
     }
-
+    void save(ofstream &out)
+    {
+        out << "Journal "
+            << itemID << " "
+            << title << " "
+            << author << " "
+            << publicationYear << " "
+            << ISSN << " "
+            << volume << " "
+            << issueNumber << endl;
+    }
 };
 
 struct IssueRecord
@@ -197,6 +229,20 @@ public:
 
         cout << "Item Issued.";
     }
+    void saveToFile()
+    {
+        ofstream out("library.txt");
+
+        for(int i=0;i<count;i++)
+        {
+            catalog[i]->save(out);
+        }
+
+        out.close();
+
+        cout << "Catalog Saved.";
+    }
+
     void returnItem(int lateDays)
     {
         if(lateDays > 0)
@@ -214,6 +260,10 @@ int main()
 
     LibraryItem* ptr;
 int opt;
+cout<<"===== Library Management System ====="<<endl;
+cout<<"1: Add book"<<endl;
+cout<<"2: Add Journal"<<endl;
+cout<<"Enter your choice: ";
 cin>>opt;
 switch(opt)
 {
@@ -256,4 +306,3 @@ ptr->getdata();
     }
     return 0;
 }
-  
