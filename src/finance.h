@@ -69,16 +69,16 @@ public:
 
     void display()
     {
-        cout << "Student Reference: "
-             << studentRef << endl;
+        cout <<"Student Reference: "
+             <<studentRef<< endl;
 
-        cout << "Semester Fee: "
-             << semesterFee << endl;
+        cout <<"Semester Fee: "
+             <<semesterFee<<endl;
 
-        cout << "Hostel Fee: "
-             << hostelFee << endl;
+        cout <<"Hostel Fee: "
+             <<hostelFee<<endl;
 
-        cout << "Library Fine: "
+        cout <<"Library Fine: "
              << libraryFine << endl;
 
         cout << "Total Paid: "
@@ -139,28 +139,33 @@ public:
              << totalAmount << endl;
     }
 
-};
 
+~Invoice() 
+{
+     delete[] items; 
+     cout <<"Invoice Destroyed"; }
+     }; 
+     int Invoice::invoiceCounter = 0;
 int main()
 {
-    cout << "===== Fee Record =====\n";
+    cout << "===== Fee Record =====";
     FeeRecord f1("ST101",50000,10000,2000,30000);
     f1.display();
     
-    cout << "\nPayment of 5000 Recorded\n";
+    cout << "Payment of 5000 Recorded";
     f1 -= 5000;
     f1.display();
 
-    cout << "\n===== Copy Constructor =====\n";
+    cout << "===== Copy Constructor =====";
     FeeRecord f2 = f1;
     f2.display();
 
-    cout << "\n===== Assignment Operator =====\n";
+    cout << "===== Assignment Operator =====";
     FeeRecord f3;
     f3 = f1;
     f3.display();
 
-    cout << "\n===== Invoice =====\n";
+    cout << "===== Invoice =====";
 
     Invoice i1( "11-06-2026", 3, 62000);
 
