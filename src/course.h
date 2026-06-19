@@ -198,9 +198,16 @@ int main()
     {
         cout << "Capacity Exceeded" << endl;
     }
-
+cout<<"course information :"<<endl;
     cout << c1 << endl;
-
+  Enrollment e1("Ali", &c1, "18-06-2026", "A");
+   cout<<"enrollment information :"<<endl;
+    e1.display();
+    WaitingList w1;
+    w1.addStudent("Ahmed");
+    w1.addStudent("Sara");
+ cout<<"waiting list of students :"<<endl;
+    w1.display();
     Course c2("CS101",
               "Programming",
               3,
