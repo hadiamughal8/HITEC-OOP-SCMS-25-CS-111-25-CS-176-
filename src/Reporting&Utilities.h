@@ -1,11 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
 using namespace std;
-
-
-class Student {
+class Student{
 private:
     string name;
     string rollNo;
