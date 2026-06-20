@@ -4,6 +4,31 @@
 
 using namespace std;
 
+class Student 
+{
+public:
+    string name;
+    string rollNo;
+
+    Student() 
+	{
+        name = "";
+        rollNo = "";
+    }
+    Student(string n, string r) 
+	{
+        name = n;
+        rollNo = r;
+    }
+    string getName()
+	 { return name;
+	  
+	  }
+    string getRollNo() 
+	{ return rollNo;
+	
+	 }
+};
 
 
 
@@ -31,6 +56,31 @@ public:
         occupants[2] = NULL;
     }
     
+    int getRoomNumber()
+	 { return roomNumber; 
+	
+	 }
+    string getType() 
+	{ return type; 
+	
+	}
+    int getFloor()
+	 { return floor; 
+	 
+	 }
+    
+    int getCapacity() 
+	{
+        if (type == "Single" || type == "single")
+		 {
+            return 1;
+        }
+        if (type == "Double" || type == "double")
+		 {
+            return 2;
+        }
+        return 3; 
+    }
     
     
     
@@ -57,13 +107,25 @@ public:
         return false;
     }
   
-  
-  
-  
-  
-  
-  
-  
+  void displayRoom() 
+	{
+        cout << "Room: " << roomNumber << " | Type: " << type << " | Floor: " << floor << endl;
+        cout << "Occupants:" << endl;
+        bool empty = true;
+        int cap = getCapacity();
+        for (int i = 0; i < cap; i++)
+		 {
+            if (occupants[i] != NULL) 
+			{
+                cout << "  - " << occupants[i]->getName() << " (Roll: " << occupants[i]->getRollNo() << ")" << endl;
+                empty = false;
+            }
+        }
+        if (empty) 
+		{
+            cout << "  - Empty" << endl;
+        }
+    } 
 
 };
 
@@ -123,10 +185,25 @@ public:
 };
 
 
+class Accommodation : virtual public HostelComponent
+ {
+    public:
+    Accommodation(string hName) : HostelComponent(hName) 
+	{
+	}
+    virtual void allocateRoom(Student* s, int roomNum) = 0;
+    virtual void vacateRoom(int roomNum) = 0;
+};
 
 
-
-
+class Reportable : virtual public HostelComponent 
+{
+    public:
+    Reportable(string hName) : HostelComponent(hName) 
+	{
+	}
+    virtual void generateReport()  = 0;
+};
 
 
 class HostelManager : public Accommodation, public Reportable {
@@ -157,17 +234,31 @@ public:
     }
     
     
+    void vacateRoom(int roomNum) 
+		{
+        int count = block.getRoomCount();
+        for (int i = 0; i < count; i++) 
+		{
+            Room* r = block.getRoomAtIndex(i);
+            if (r != NULL && r->getRoomNumber() == roomNum) 
+			{
+                string roll;
+                cout << "Enter Roll No to remove: ";
+                cin >> roll;
+                if (r->removeOccupant(roll)) 
+				{
+                    cout << "Student removed successfully!" << endl;
+                } else 
+				{
+                    cout << "Student not found in room!" << endl;
+                }
+                return;
+            }
+        }
+        cout << "Room not found!" << endl;
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        void generateReport() const {
+        void generateReport() {
       
         cout << "HOSTEL REPORT: " << hostelName << endl;
         
@@ -176,17 +267,15 @@ public:
 };
 
 
-
-
-
-
-
 int main() {
 	
-	
-	
-	
-	
+	HostelManager manager("HITEC Hostel", "Ayesha Block");
+    
+    manager.addRoom(Room(101, "Single", 1));
+    manager.addRoom(Room(102, "Double", 1));
+    
+    Student s1("Omama", "25-CS-176");
+    Student s2("Hadia", "25-CS-111");
 	
 	
 	    int choice = 0;
