@@ -3,18 +3,18 @@
 #include <string>
 
 using namespace std;
-class Student {
+class reportStudent {
 private:
     string name;
     string rollNo;
     float GPA;
 public:
-    Student() {
+    reportStudent() {
         name = "";
         rollNo = "";
         GPA = 0.0;
     }
-    Student(string n, string r, float g) {
+    reportStudent(string n, string r, float g) {
         name = n;
         rollNo = r;
         GPA = g;
@@ -60,18 +60,18 @@ namespace SCMS {
     
     namespace Reports {
      
-        void generateReport(Student* students[], int studentCount, reportBook books[], int bookCount) {
+        void generateReport(reportStudent* students[], int studentCount, reportBook books[], int bookCount) {
             
             cout << "             CAMPUS CONSOLIDATED REPORT" << endl;
             
             Utils::displayDate();
 for (int i = 0; i < studentCount - 1; i++) {
                 for (int j = 0; j < studentCount - i - 1; j++) {
-                    auto compare = [](Student* a, Student* b) {
+                    auto compare = [](reportStudent* a, reportStudent* b) {
                         return a->getGPA() < b->getGPA();
                     };
                     if (compare(students[j], students[j + 1])) {
-                        Student* temp = students[j];
+                        reportStudent* temp = students[j];
                         students[j] = students[j + 1];
                         students[j + 1] = temp;
                     }
@@ -85,7 +85,7 @@ cout << "\n[STUDENTS SORTED BY GPA]" << endl;
             }
             
            
-            auto isProbation = [](Student* s) {
+            auto isProbation = [](reportStudent* s) {
                 return s->getGPA() < 2.0;
             };
            cout << "\n[STUDENTS ON PROBATION]" << endl;
