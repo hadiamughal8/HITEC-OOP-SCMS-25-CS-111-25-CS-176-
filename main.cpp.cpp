@@ -176,8 +176,8 @@ do
         manager.addRoom(Room(101,"Single",1));
         manager.addRoom(Room(102,"Double",1));
 
-        Student s1("Omama","25-CS-176");
-        Student s2("Hadia","25-CS-111");
+        hostelStudent s1("Omama","25-CS-176");
+        hostelStudent s2("Hadia","25-CS-111");
 
         int choice = 0;
 
