@@ -26,7 +26,7 @@ do
     {
     case 1:
     {
-        Person* p = NULL;
+        Person* p =      NULL;
         int choice;
 
         do
@@ -219,20 +219,20 @@ do
     {
         int studentCount = 4;
 
-        Student* campusStudents[4];
+        reportStudent* campusStudents[4];
 
-        campusStudents[0] = new Student("Omama","25-CS-176",3.85);
-        campusStudents[1] = new Student("Hadia","25-CS-111",1.80);
-        campusStudents[2] = new Student("Syed","25-CS-012",3.40);
-        campusStudents[3] = new Student("Kashif","25-CS-13",1.50);
+        campusStudents[0] = new reportStudent("Omama","25-CS-176",3.85);
+        campusStudents[1] = new reportStudent("Hadia","25-CS-111",1.80);
+        campusStudents[2] = new reportStudent("Syed","25-CS-012",3.40);
+        campusStudents[3] = new reportStudent("Kashif","25-CS-13",1.50);
 
         int bookCount = 3;
 
-        Book libraryCatalog[3];
+        reportBook libraryCatalog[3];
 
-        libraryCatalog[0] = Book("C++ Programming",false);
-        libraryCatalog[1] = Book("Data Structures Guide",true);
-        libraryCatalog[2] = Book("Database Systems Guide",true);
+        libraryCatalog[0] = reportBook("C++ Programming",false);
+        libraryCatalog[1] = reportBook("Data Structures Guide",true);
+        libraryCatalog[2] = reportBook("Database Systems Guide",true);
 
         int choice = 0;
 
