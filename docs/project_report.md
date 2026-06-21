@@ -12,7 +12,7 @@
 - Date: June 22, 2026
 - Department: Department of Computer Science
 - Institution:HITEC University Taxila
-- GitHub Repository:https://github.com/hadiamughal8/HITEC-OOP-SCMS-25-CS-111-25-CS-176-.git
+- GitHub Repository:https://github.com/hadiamughal8/HITEC-OOP-SCMS-25-CS-111-25-CS-176-
 
 ---
 
