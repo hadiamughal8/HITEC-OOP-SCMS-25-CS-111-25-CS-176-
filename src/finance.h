@@ -146,34 +146,3 @@ public:
      cout <<"Invoice Destroyed"; }
      }; 
      int Invoice::invoiceCounter = 0;
-int main()
-{
-    cout << "===== Fee Record =====";
-    FeeRecord f1("ST101",50000,10000,2000,30000);
-    f1.display();
-    
-    cout << "Payment of 5000 Recorded";
-    f1 -= 5000;
-    f1.display();
-
-    cout << "===== Copy Constructor =====";
-    FeeRecord f2 = f1;
-    f2.display();
-
-    cout << "===== Assignment Operator =====";
-    FeeRecord f3;
-    f3 = f1;
-    f3.display();
-
-    cout << "===== Invoice =====";
-
-    Invoice i1( "11-06-2026", 3, 62000);
-
-    i1.setItem(0,"Semester Fee");
-    i1.setItem(1,"Hostel Fee");
-    i1.setItem(2,"Library Fine");
-
-    i1.display();
-
-    return 0;
-}
