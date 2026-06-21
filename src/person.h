@@ -35,9 +35,13 @@ private:
     string enrolledCourses[3];
 public:
     Student():Person("", "",0, ""){
-        rollNo="";
-        semester=0;
-        GPA=0.0;
+       
+    }
+    Student(string n,string r):Person(n,"",0,"")
+    {
+rollNo=r;
+semester=0;
+GPA=0;
     }
     void getdata() override
     {
