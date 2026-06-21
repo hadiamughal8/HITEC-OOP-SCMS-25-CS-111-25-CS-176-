@@ -4,18 +4,18 @@
 
 using namespace std;
 
-class Student 
+class hostelStudent 
 {
-public:
+private:
     string name;
     string rollNo;
-
-    Student() 
+public:
+    hostelStudent() 
 	{
         name = "";
         rollNo = "";
     }
-    Student(string n, string r) 
+    hostelStudent(string n, string r) 
 	{
         name = n;
         rollNo = r;
@@ -37,7 +37,7 @@ private:
     int roomNumber;
     string type; 
     int floor;
-    Student* occupants[3]; 
+    hostelStudent* occupants[3]; 
 public:
     Room() {
         roomNumber = 0;
@@ -84,7 +84,7 @@ public:
     
     
     
-        bool addOccupant(Student* s) {
+        bool addOccupant(hostelStudent* s) {
         int cap = getCapacity();
         for (int i = 0; i < cap; i++) {
             if (occupants[i] == NULL) {
@@ -191,7 +191,7 @@ class Accommodation : virtual public HostelComponent
     Accommodation(string hName) : HostelComponent(hName) 
 	{
 	}
-    virtual void allocateRoom(Student* s, int roomNum) = 0;
+    virtual void allocateRoom(hostelStudent* s, int roomNum) = 0;
     virtual void vacateRoom(int roomNum) = 0;
 };
 
@@ -217,7 +217,7 @@ public:
         block.addRoom(r);
     }
     
-    void allocateRoom(Student* s, int roomNum) {
+    void allocateRoom(hostelStudent* s, int roomNum) {
         int count = block.getRoomCount();
         for (int i = 0; i < count; i++) {
             Room* r = block.getRoomAtIndex(i);

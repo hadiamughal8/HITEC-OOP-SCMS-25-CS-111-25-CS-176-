@@ -23,16 +23,16 @@ public:
     string getRollNo() { return rollNo; }
     float getGPA() { return GPA; }
 };
-class Book {
+class reportBook {
 private:
     string title;
     bool isOverdue;
 public:
-    Book() {
+    reportBook() {
         title = "";
         isOverdue = false;
     }
-    Book(string t, bool overdue) {
+    reportBook(string t, bool overdue) {
         title = t;
         isOverdue = overdue;
     }
@@ -60,7 +60,7 @@ namespace SCMS {
     
     namespace Reports {
      
-        void generateReport(Student* students[], int studentCount, Book books[], int bookCount) {
+        void generateReport(Student* students[], int studentCount, reportBook books[], int bookCount) {
             
             cout << "             CAMPUS CONSOLIDATED REPORT" << endl;
             
@@ -99,7 +99,7 @@ cout << "\n[STUDENTS SORTED BY GPA]" << endl;
             if (!foundProbation) {
                 cout << " None." << endl;
             }
-            auto isOverdue = [](Book b) {
+            auto isOverdue = [](reportBook b) {
                 return b.getIsOverdue();
             };
             cout << "\n[OVERDUE LIBRARY BOOKS]" << endl;
