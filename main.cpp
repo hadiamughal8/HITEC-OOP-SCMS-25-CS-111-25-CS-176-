@@ -4,7 +4,7 @@ using namespace std;
 #include "src/course.h"
 #include "src/library.h"
 #include "src/finance.h"
-#include "src/hostel.h"
+#include "src/Hostel.h"
 #include "src/Reporting&Utilities.h"
 int main()
 {

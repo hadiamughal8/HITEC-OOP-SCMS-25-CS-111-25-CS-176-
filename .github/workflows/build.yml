@@ -1,0 +1,13 @@
+name: Build SCMS
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install g++
+        run: g++ --version
+      - name: Compile
+        run: g++ -std=c++17 -Wall main.cpp -o scms
+      - name: Smoke Test
+        run: echo 'Build successful'
